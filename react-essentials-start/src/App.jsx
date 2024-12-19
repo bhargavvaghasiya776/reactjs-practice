@@ -2,19 +2,23 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import {CORE_CONCEPTS} from './data.js'
+import Card from './Card.jsx'
 
-function Card() {
-  const [count, setCount] = useState(0)
-  
+const reactDesc = ['Test1','Test2','Test3']
+
+function  getRandomInt(max) {
+    return Math.floor(Math.random() * max + 1);
+}
+
+
+function CoreComponent(props) {
   return (
-    <div className="card">
-      <button onClick={() => setCount((count) => count + 1)}>
-        count is {count}
-      </button>
-      <p>
-        Edit <code>src/App.jsx</code> and save to test HMR
-      </p>
-    </div>
+    <li>
+     <img src={props.img} alt={props.title} />
+     <h3>{props.title}</h3>
+     <p>{props.description}</p>
+    </li>
   );
 }
 
@@ -33,8 +37,15 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <Card />
+      <section id="core-concepts"  >
+        <h2>Core concepts</h2>
+        <ul>
+          {CORE_CONCEPTS.map((conceptItem)=> <CoreComponent {...conceptItem} />)}
+          
+        </ul>
+      </section>
       <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+        {reactDesc[getRandomInt(2)]} Click on the Vite and React logos to learn more
       </p>
     </>
   )
